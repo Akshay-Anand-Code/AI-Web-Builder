@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Code, Zap, Globe, Users, Star, Menu, X, ArrowRight, Play, Check } from 'lucide-react';
+import { Code, Zap, Globe, Menu, X, ArrowRight, Play, Check } from 'lucide-react';
 import LiveRenderer from './components/LiveRenderer';
 
 const ModernLandingPage = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
