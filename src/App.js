@@ -6,12 +6,6 @@ const ModernLandingPage = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Smooth scroll CSS
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
