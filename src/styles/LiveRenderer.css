@@ -1,0 +1,146 @@
+/* LiveRenderer.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* font-family: 'Press Start 2P', cursive; */
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .live-renderer {
+    display: flex;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  .input-container {
+    flex: 1;
+    max-width: 33.33%;
+    min-width: 320px;
+    min-height: 0;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(30, 30, 40, 0.85);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    border: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    margin: 32px 0 32px 32px;
+    /* Remove border-right */
+  }
+  
+  .preview-container {
+    flex: 2;
+    padding: 32px 24px;
+    background: rgba(18, 18, 24, 0.85);
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    border: 1px solid #232336;
+    margin: 32px 32px 32px 0;
+  }
+  
+  .user-input-wrapper, .modify-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+  
+  textarea {
+    width: 100%;
+    min-height: 120px;
+    height: 200px;
+    max-height: 300px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #232336;
+    color: #ffffff;
+    border: 1px solid #444466;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.05);
+  }
+  
+  .streaming-live-preview iframe {
+    width: 100%;
+    height: calc(100vh - 80px);
+    border: 1px solid #333333;
+    background-color: #ffffff;
+  }
+  
+  button {
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 12px 20px;
+    background-color: #03dac6;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* font-family: 'Press Start 2P', cursive; */
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #018786;
+  }
+  
+  button:disabled {
+    background-color: #6e6e6e;
+    cursor: not-allowed;
+  }
+  
+  h1 {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    color: #bb86fc;
+    text-align: center;
+  }
+  
+  h2 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #03dac6;
+  }
+  
+  .error {
+    color: #cf6679;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 768px) {
+    .live-renderer {
+      flex-direction: column;
+    }
+  
+    .input-container,
+    .preview-container {
+      max-width: 100%;
+      width: 100%;
+      padding: 15px;
+    }
+  
+    textarea {
+      height: 120px;
+    }
+  
+    .streaming-live-preview iframe {
+      height: 50vh;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  
+    h2 {
+      font-size: 16px;
+    }
+  }
