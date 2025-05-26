@@ -5,6 +5,43 @@ import ModifyWebsiteInput from './ModifyWebsiteInput';
 import StreamingLivePreview from './StreamingLivePreview';
 import { generateWebsite, modifyWebsite } from '../services/openaiService';
 import '../styles/LiveRenderer.css';
+import { getParameters } from "codesandbox/lib/api/define";
+
+// Function to open the generated site in CodeSandbox
+function openInCodeSandbox(html, css, js = '') {
+  const parameters = getParameters({
+    files: {
+      "index.html": { content: html },
+      "styles.css": { content: css },
+      "index.js": { content: js }
+    }
+  });
+
+  const form = document.createElement('form');
+  form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
+  form.method = 'POST';
+  form.target = '_blank';
+
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'parameters';
+  input.value = parameters;
+
+  form.appendChild(input);
+  document.body.appendChild(form);
+  form.submit();
+  document.body.removeChild(form);
+}
+
+function prepareHtmlForSandbox(html) {
+  if (!html.includes('href="styles.css"')) {
+    return html.replace(
+      '</head>',
+      '<link rel="stylesheet" href="styles.css"></head>'
+    );
+  }
+  return html;
+}
 
 const LiveRenderer = ({ onNavigateHome }) => {
   const [userInput, setUserInput] = useState('');
@@ -124,6 +161,16 @@ const LiveRenderer = ({ onNavigateHome }) => {
         <div className="preview-container">
           <h2>LIVE PREVIEW</h2>
           <StreamingLivePreview htmlCode={htmlCode} cssCode={cssCode} />
+          <button
+            className="sticky-sandbox-btn"
+            onClick={() => {
+              const htmlWithCss = prepareHtmlForSandbox(htmlCode);
+              openInCodeSandbox(htmlWithCss, cssCode);
+            }}
+            disabled={!htmlCode && !cssCode}
+          >
+            View in CodeSandbox
+          </button>
         </div>
       </div>
     </div>

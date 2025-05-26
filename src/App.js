@@ -324,9 +324,9 @@ const ModernLandingPage = () => {
 
   // Main render
   return (
-    <div className="bg-slate-900 min-h-screen">
+    <div className="app-container">
       <Navigation />
-      <main className="transition-all duration-500 ease-in-out">
+      <main className="main-content">
         {currentPage === 'builder' ? (
           <LiveRenderer onNavigateHome={() => setCurrentPage('home')} />
         ) : (
@@ -339,20 +339,9 @@ const ModernLandingPage = () => {
           </>
         )}
       </main>
-      {/* Footer */}
-      <footer className="border-t border-slate-800 bg-slate-900/50 backdrop-blur-sm py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
-                <Code className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">WebCraft AI</span>
-            </div>
-            <p className="text-slate-400">© 2024 WebCraft AI. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      {currentPage !== 'builder' && (
+        <footer>© 2024 WebCraft AI. All rights reserved.</footer>
+      )}
       <style jsx>{`
         @keyframes gradient {
           0% { background-position: 0% 50%; }
