@@ -31,7 +31,7 @@ const ModernLandingPage = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
               <Code className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-white">WebCraft AI</span>
+            <span className="text-xl font-bold text-white">DIY TECH</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map(link => (
@@ -87,9 +87,9 @@ const ModernLandingPage = () => {
       <div className="relative z-10 w-full max-w-7xl px-6 flex flex-col items-center justify-center">
         <div className="animate-fade-in-up">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-            Build Websites
+            Do It Yourself
             <span className="block bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
-              In Real Time
+            Build Websites In Real Time
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -268,7 +268,7 @@ const ModernLandingPage = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-            About <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">WebCraft AI</span>
+            About <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">DIY TECH</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             We're on a mission to democratize web development and make beautiful websites accessible to everyone.
@@ -278,7 +278,7 @@ const ModernLandingPage = () => {
           <div>
             <h3 className="text-3xl font-bold text-white mb-6">Our Story</h3>
             <p className="text-slate-300 text-lg mb-6 leading-relaxed">
-              Founded in 2024, WebCraft AI emerged from a simple observation: creating websites shouldn't require years of coding experience. 
+              Founded in 2024, DIY TECH emerged from a simple observation: creating websites shouldn't require years of coding experience. 
               We believe that everyone has great ideas, and technology should empower, not limit creativity.
             </p>
             <p className="text-slate-300 text-lg leading-relaxed">
@@ -340,7 +340,7 @@ const ModernLandingPage = () => {
         )}
       </main>
       {currentPage !== 'builder' && (
-        <footer>© 2024 WebCraft AI. All rights reserved.</footer>
+        <footer>© 2024 DIY TECH. All rights reserved.</footer>
       )}
       <style jsx>{`
         @keyframes gradient {
