@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import AIStepVisualizer from './AIStepVisualizer';
+import '../styles/AIStepVisualizer.css';
 
-const StreamingLivePreview = ({ htmlCode, cssCode }) => {
+const StreamingLivePreview = ({ htmlCode, cssCode, isGenerating, generationProgress = 0 }) => {
   const iframeRef = useRef(null);
 
   useEffect(() => {
@@ -9,8 +11,39 @@ const StreamingLivePreview = ({ htmlCode, cssCode }) => {
       const doc = iframe.contentDocument;
       
       // Update HTML
-      const bodyContent = htmlCode || '<h1 style="color: #ffffff; text-align: center; font-family: Arial, sans-serif;">Your website will appear here</h1>';
-      if (doc.body.innerHTML !== bodyContent) {
+      const bodyContent = htmlCode || `
+        <div style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          text-align: center;
+        ">
+          <div>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 16px; opacity: 0.3;">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h2 style="
+              color: rgba(255,255,255,0.3);
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              font-weight: 400;
+              font-size: 18px;
+              margin: 0;
+            ">Your website will appear here</h2>
+            <p style="
+              color: rgba(255,255,255,0.15);
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              font-size: 14px;
+              margin-top: 8px;
+            ">Start by describing your vision</p>
+          </div>
+        </div>
+      `;
+      
+      // Don't clear/change HTML content during generation if we already have content
+      if (!isGenerating || !doc.body.innerHTML.includes(htmlCode)) {
         doc.body.innerHTML = bodyContent;
       }
       
@@ -21,24 +54,37 @@ const StreamingLivePreview = ({ htmlCode, cssCode }) => {
         style.id = 'dynamic-style';
         doc.head.appendChild(style);
       }
-      const cssContent = `
+      
+      // Default CSS for both placeholder and generated content
+      const defaultCSS = htmlCode ? `
         body {
-          background-color: #2a2a2a;
-          color: #ffffff;
-          font-family: Arial, sans-serif;
+          background-color: #ffffff;
+          color: #333333;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
           margin: 0;
           padding: 20px;
           box-sizing: border-box;
           overflow: auto;
           height: 100%;
         }
-        ${cssCode || ''}
+      ` : `
+        body {
+          background-color: transparent;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          overflow: auto;
+          height: 100%;
+        }
       `;
-      if (style.textContent !== cssContent) {
+      
+      // Don't modify CSS during generation if it's already set
+      if (!isGenerating || style.textContent !== (defaultCSS + (cssCode || ''))) {
+        const cssContent = defaultCSS + (cssCode || '');
         style.textContent = cssContent;
       }
     }
-  }, [htmlCode, cssCode]);
+  }, [htmlCode, cssCode, isGenerating]);
 
   useEffect(() => {
     const iframe = iframeRef.current;
@@ -51,18 +97,20 @@ const StreamingLivePreview = ({ htmlCode, cssCode }) => {
   }, []); // This effect runs only once on mount
 
   return (
-    <div className="streaming-live-preview" style={{ height: '100%' }}>
-      <iframe 
-        ref={iframeRef} 
-        title="Streaming Live Preview"
-        style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#2a2a2a',
-          border: '1px solid #333333',
-          borderRadius: '4px',
-        }}
-      />
+    <div className={`streaming-live-preview ${isGenerating ? 'generating' : ''}`}>
+      <div className="preview-container">
+        <iframe 
+          ref={iframeRef} 
+          title="Streaming Live Preview"
+          className=""
+        />
+        {isGenerating && (
+          <div className="generating-overlay" style={{ opacity: 0.1 }}></div>
+        )}
+      </div>
+      {isGenerating && (
+        <AIStepVisualizer isActive={isGenerating} progress={generationProgress} />
+      )}
     </div>
   );
 };

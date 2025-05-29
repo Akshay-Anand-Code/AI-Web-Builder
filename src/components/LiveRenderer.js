@@ -1,11 +1,15 @@
-import React, { useState, useCallback } from 'react';
-import { Code } from 'lucide-react';
-import UserInput from './UserInput';
-import ModifyWebsiteInput from './ModifyWebsiteInput';
+import React, { useState, useCallback, useEffect } from 'react';
+import { Code, Sparkles, Edit3, Eye, Loader2, ChevronRight, Terminal } from 'lucide-react';
 import StreamingLivePreview from './StreamingLivePreview';
 import { generateWebsite, modifyWebsite } from '../services/openaiService';
 import '../styles/LiveRenderer.css';
-import { getParameters } from "codesandbox/lib/api/define";
+
+// Define the parameters function locally to avoid dependency issues
+const getParameters = (options) => {
+  return {
+    parameters: btoa(JSON.stringify(options))
+  };
+};
 
 // Function to open the generated site in CodeSandbox
 function openInCodeSandbox(html, css, js = '') {
@@ -25,7 +29,7 @@ function openInCodeSandbox(html, css, js = '') {
   const input = document.createElement('input');
   input.type = 'hidden';
   input.name = 'parameters';
-  input.value = parameters;
+  input.value = parameters.parameters;
 
   form.appendChild(input);
   document.body.appendChild(form);
@@ -51,6 +55,53 @@ const LiveRenderer = ({ onNavigateHome }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState(null);
+  const [generationProgress, setGenerationProgress] = useState(0);
+
+  // Simulated progress calculator
+  useEffect(() => {
+    let progressInterval;
+    
+    if (isStreaming) {
+      // Reset progress
+      setGenerationProgress(0);
+      
+      // Create a simulated progress that starts fast and slows down towards completion
+      progressInterval = setInterval(() => {
+        setGenerationProgress(prevProgress => {
+          // Ensure steps complete faster and more evenly
+          if (prevProgress >= 90) {
+            // Final stage - slow
+            return Math.min(prevProgress + 0.2, 99.9); // Cap at 99.9% until complete
+          } 
+          else if (prevProgress >= 75) {
+            // Fourth step - moderate
+            return prevProgress + 0.5;
+          }
+          else if (prevProgress >= 50) {
+            // Third step - faster
+            return prevProgress + 0.8;
+          }
+          else if (prevProgress >= 25) {
+            // Second step - faster
+            return prevProgress + 1.0;
+          }
+          // First step - fastest
+          else {
+            return prevProgress + 1.5;
+          }
+        });
+      }, 100); // Faster interval
+    } else {
+      // When streaming stops, ensure we reach 100%
+      if (generationProgress > 0 && generationProgress < 100) {
+        setGenerationProgress(100);
+      }
+    }
+    
+    return () => {
+      if (progressInterval) clearInterval(progressInterval);
+    };
+  }, [isStreaming, generationProgress]);
 
   const handleGenerateWebsite = useCallback(async () => {
     if (!userInput.trim()) {
@@ -73,7 +124,9 @@ const LiveRenderer = ({ onNavigateHome }) => {
       console.error('Error generating website:', err);
     } finally {
       setIsLoading(false);
-      setIsStreaming(false);
+      setTimeout(() => {
+        setIsStreaming(false);
+      }, 1000); // Add a small delay to complete the animation
     }
   }, [userInput]);
 
@@ -100,77 +153,178 @@ const LiveRenderer = ({ onNavigateHome }) => {
       console.error('Error modifying website:', err);
     } finally {
       setIsLoading(false);
-      setIsStreaming(false);
+      setTimeout(() => {
+        setIsStreaming(false);
+      }, 1000); // Add a small delay to complete the animation
     }
   }, [modifyInput, htmlCode, cssCode]);
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="builder-container">
       {/* Navigation Header */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <button 
-              onClick={onNavigateHome}
-              className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-            >
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-lg flex items-center justify-center">
-                <Code className="w-5 h-5 text-white" />
+      <nav className="builder-nav">
+        <div className="nav-content">
+          <button 
+            onClick={onNavigateHome}
+            className="logo-button"
+          >
+            <div className="w-10 h-10 flex items-center justify-center transform transition-all duration-300 shadow-lg shadow-blue-500/25">
+              <img src="/Diytech.png" alt="DIY TECH Logo" className="w-full h-full" />
+            </div>
+            <span className="text-xl font-bold text-white">DIY TECH</span>
+          </button>
+          <div className="nav-status">
+            {isStreaming && (
+              <div className="streaming-indicator">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Generating...</span>
               </div>
-              <span className="text-xl font-bold text-white">DIY TECH</span>
-            </button>
+            )}
           </div>
         </div>
       </nav>
 
-      {/* Main Content */}
-      <div className="live-renderer pt-20">
-        <div className="input-container">
-          <h2>WEBSITE DESCRIPTION</h2>
-          <div className="user-input-wrapper">
-            <UserInput 
-              value={userInput} 
-              onChange={setUserInput} 
-              isStreaming={isStreaming}
-            />
-            <button 
-              onClick={handleGenerateWebsite} 
-              disabled={isLoading || isStreaming}
-            >
-              {isLoading ? 'Generating...' : 'Generate Website'}
-            </button>
+      {/* Main Builder Interface */}
+      <div className="builder-content">
+        {/* Input Panel */}
+        <div className="input-panel">
+          {/* Website Description Section */}
+          <div className="input-section generate-section">
+            <div className="section-header">
+              <div className="header-icon">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <h2>Website Description</h2>
+            </div>
+            <p className="section-description">
+              Describe your dream website and watch AI bring it to life
+            </p>
+            <div className="input-group">
+              <textarea
+                value={userInput}
+                onChange={(e) => setUserInput(e.target.value)}
+                placeholder="A modern portfolio website with a dark theme, animated hero section, project showcase grid, and contact form..."
+                className="builder-textarea"
+                disabled={isStreaming}
+              />
+              <button 
+                onClick={handleGenerateWebsite} 
+                disabled={isLoading || isStreaming}
+                className="generate-button"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  <>
+                    <Terminal className="w-5 h-5" />
+                    Generate Website
+                  </>
+                )}
+              </button>
+            </div>
           </div>
-          
-          <h2>MODIFY WEBSITE</h2>
-          <div className="modify-input-wrapper">
-            <ModifyWebsiteInput 
-              value={modifyInput} 
-              onChange={setModifyInput} 
-              isStreaming={isStreaming}
-            />
-            <button 
-              onClick={handleModifyWebsite} 
-              disabled={isLoading || isStreaming || !htmlCode}
-            >
-              {isLoading ? 'Modifying...' : 'Modify Website'}
-            </button>
+
+          {/* Modify Website Section */}
+          <div className="input-section modify-section">
+            <div className="section-header">
+              <div className="header-icon modify-icon">
+                <Edit3 className="w-5 h-5" />
+              </div>
+              <h2>Modify Website</h2>
+            </div>
+            <p className="section-description">
+              Fine-tune your website with specific changes
+            </p>
+            <div className="input-group">
+              <textarea
+                value={modifyInput}
+                onChange={(e) => setModifyInput(e.target.value)}
+                placeholder="Add a testimonials section with carousel, change the color scheme to blue..."
+                className="builder-textarea"
+                disabled={isStreaming || !htmlCode}
+              />
+              <button 
+                onClick={handleModifyWebsite} 
+                disabled={isLoading || isStreaming || !htmlCode}
+                className="modify-button"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Updating...
+                  </>
+                ) : (
+                  <>
+                    <Edit3 className="w-5 h-5" />
+                    Apply Changes
+                  </>
+                )}
+              </button>
+            </div>
           </div>
-          
-          {error && <p className="error">{error}</p>}
+
+          {/* Error Display */}
+          {error && (
+            <div className="error-message">
+              <div className="error-icon">!</div>
+              {error}
+            </div>
+          )}
         </div>
-        <div className="preview-container">
-          <h2>LIVE PREVIEW</h2>
-          <StreamingLivePreview htmlCode={htmlCode} cssCode={cssCode} />
-          <button
-            className="sticky-sandbox-btn"
-            onClick={() => {
-              const htmlWithCss = prepareHtmlForSandbox(htmlCode);
-              openInCodeSandbox(htmlWithCss, cssCode);
-            }}
-            disabled={!htmlCode && !cssCode}
-          >
-            View in CodeSandbox
-          </button>
+
+        {/* Preview Panel */}
+        <div className="preview-panel">
+          <div className="preview-header">
+            <div className="header-icon preview-icon">
+              <Eye className="w-5 h-5" />
+            </div>
+            <h2>Live Preview</h2>
+            <div className="preview-status">
+              {isStreaming ? (
+                <>
+                  <div className="status-dot streaming"></div>
+                  <span>Generating ({Math.round(generationProgress)}%)</span>
+                </>
+              ) : htmlCode ? (
+                <>
+                  <div className="status-dot complete"></div>
+                  <span>Ready</span>
+                </>
+              ) : (
+                <>
+                  <div className="status-dot waiting"></div>
+                  <span>Waiting</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="preview-window">
+            {htmlCode && (
+              <StreamingLivePreview 
+                htmlCode={htmlCode} 
+                cssCode={cssCode} 
+                isGenerating={isStreaming}
+              />
+            )}
+          </div>
+
+          {htmlCode && !isStreaming && (
+            <button 
+              onClick={() => openInCodeSandbox(
+                prepareHtmlForSandbox(htmlCode), 
+                cssCode
+              )}
+              className="codesandbox-button"
+            >
+              <Code className="w-5 h-5" />
+              Open in CodeSandbox
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          )}
         </div>
       </div>
     </div>
