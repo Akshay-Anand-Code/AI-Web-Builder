@@ -3,13 +3,7 @@ import { Code, Sparkles, Edit3, Eye, Loader2, ChevronRight, Terminal } from 'luc
 import StreamingLivePreview from './StreamingLivePreview';
 import { generateWebsite, modifyWebsite } from '../services/openaiService';
 import '../styles/LiveRenderer.css';
-
-// Define the parameters function locally to avoid dependency issues
-const getParameters = (options) => {
-  return {
-    parameters: btoa(JSON.stringify(options))
-  };
-};
+import { getParameters } from 'codesandbox/lib/api/define';
 
 // Function to open the generated site in CodeSandbox
 function openInCodeSandbox(html, css, js = '') {
@@ -17,7 +11,7 @@ function openInCodeSandbox(html, css, js = '') {
     files: {
       "index.html": { content: html },
       "styles.css": { content: css },
-      "index.js": { content: js }
+      "index.js": { content: js || 'console.log("Ready to use!")' }
     }
   });
 
@@ -29,7 +23,7 @@ function openInCodeSandbox(html, css, js = '') {
   const input = document.createElement('input');
   input.type = 'hidden';
   input.name = 'parameters';
-  input.value = parameters.parameters;
+  input.value = parameters;
 
   form.appendChild(input);
   document.body.appendChild(form);
