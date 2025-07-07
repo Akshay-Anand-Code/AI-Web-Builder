@@ -71,11 +71,11 @@ const ModernLandingPage = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 group cursor-pointer">
+                      <div className="flex items-center space-x-2 group cursor-pointer">
             <div className="w-10 h-10 flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/25">
-              <img src="/Diytech.png" alt="DIY TECH Logo" className="w-full h-full" />
+              <img src="/Diytech.png" alt="CLIO Logo" className="w-full h-full" />
             </div>
-            <span className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">DIY TECH</span>
+            <span className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">CLIO</span>
           </div>
           <div className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => (
@@ -598,7 +598,7 @@ const ModernLandingPage = () => {
                 Empowering creators since 2024
               </h3>
               <p className="text-gray-400 text-base md:text-lg mb-6 leading-relaxed hover:text-gray-300 transition-colors duration-300">
-                DIY TECH was born from a simple observation: creating websites shouldn't require years of coding experience. 
+                CLIO was born from a simple observation: creating websites shouldn't require years of coding experience. 
                 Our team of AI researchers and web developers have built a platform that understands design principles, 
                 user experience, and modern web standards.
               </p>
@@ -679,7 +679,7 @@ const ModernLandingPage = () => {
       {currentPage !== 'builder' && (
         <footer className="relative py-12 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-gray-400">© 2024 DIY TECH. All rights reserved.</p>
+            <p className="text-gray-400">© 2024 CLIO. All rights reserved.</p>
           </div>
         </footer>
       )}
