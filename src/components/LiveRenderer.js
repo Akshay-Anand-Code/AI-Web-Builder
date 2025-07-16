@@ -163,9 +163,9 @@ const LiveRenderer = ({ onNavigateHome }) => {
             className="logo-button"
           >
             <div className="w-10 h-10 flex items-center justify-center transform transition-all duration-300 shadow-lg shadow-blue-500/25">
-              <img src="/Diytech.png" alt="CLIO Logo" className="w-full h-full" />
+              <img src="/Diytech.png" alt="WOOF Logo" className="w-full h-full" />
             </div>
-            <span className="text-xl font-bold text-white">CLIO</span>
+            <span className="text-xl font-bold text-white">WOOF</span>
           </button>
           <div className="nav-status">
             {isStreaming && (
