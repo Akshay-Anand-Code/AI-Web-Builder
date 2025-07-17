@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Zap, Menu, X, ArrowRight, Play, Sparkles, Layers, Shield, ChevronRight } from 'lucide-react';
+import { Zap, Menu, X, ArrowRight, Play, Sparkles, Layers, Shield, ChevronRight, Twitter } from 'lucide-react';
 import LiveRenderer from './components/LiveRenderer';
 
 // Custom hook for scroll reveal animations
@@ -61,7 +61,6 @@ const ModernLandingPage = () => {
     { key: 'home', label: 'Home', href: '#home' },
     { key: 'features', label: 'Features', href: '#features' },
     { key: 'demo', label: 'Demo', href: '#demo' },
-    { key: 'about', label: 'About', href: '#about' },
   ];
 
   const Navigation = () => (
@@ -70,22 +69,35 @@ const ModernLandingPage = () => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2 group cursor-pointer">
+          <div className="flex items-center space-x-2 group cursor-pointer">
             <div className="w-10 h-10 flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/25">
               <img src="/Diytech.png" alt="WOOF Logo" className="w-full h-full" />
             </div>
             <span className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-yellow-400 group-hover:to-orange-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">WOOF</span>
           </div>
           <div className="hidden md:flex items-center space-x-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.key}
-                href={link.href}
-                className="px-5 py-2.5 rounded-full transition-all duration-300 text-gray-300 hover:text-white hover:bg-white/10 font-medium hover:translate-y-[-2px]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+            {navLinks.map((link, idx) => (
+              <React.Fragment key={link.key}>
+                <a
+                  href={link.href}
+                  className="px-5 py-2.5 rounded-full transition-all duration-300 text-gray-300 hover:text-white hover:bg-white/10 font-medium hover:translate-y-[-2px]"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+                {/* Insert Twitter icon after Demo */}
+                {link.key === 'demo' && (
+                  <a
+                    href="https://x.com/bonk_fun" // Replace with your actual X handle
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-2 flex items-center px-3 py-2 rounded-full text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
+                    aria-label="Twitter"
+                  >
+                    <Twitter className="w-5 h-5" />
+                  </a>
+                )}
+              </React.Fragment>
             ))}
             <button 
               className="ml-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-600 rounded-full font-semibold text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 transform hover:scale-105" 
@@ -105,15 +117,29 @@ const ModernLandingPage = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
           <div className="px-6 py-4 space-y-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.key}
-                href={link.href}
-                className="block w-full text-left px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+            {navLinks.map((link, idx) => (
+              <React.Fragment key={link.key}>
+                <a
+                  href={link.href}
+                  className="block w-full text-left px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+                {/* Insert Twitter icon after Demo */}
+                {link.key === 'demo' && (
+                  <a
+                    href="https://twitter.com/YOUR_HANDLE" // Replace with your actual X handle
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center px-4 py-3 rounded-xl text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
+                    aria-label="Twitter"
+                  >
+                    <Twitter className="w-5 h-5 mr-2" />
+                    <span>Twitter</span>
+                  </a>
+                )}
+              </React.Fragment>
             ))}
             <button className="w-full mt-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300" onClick={() => { setCurrentPage('builder'); setIsMenuOpen(false); }}>
               Start Building
@@ -429,106 +455,6 @@ const ModernLandingPage = () => {
 
 
 
-  // Premium About Section
-  const AboutSection = () => {
-    const [aboutHeaderRef, isAboutHeaderVisible] = useScrollReveal();
-    const [aboutContentRef, isAboutContentVisible] = useScrollReveal();
-    const [statsRef, areStatsVisible] = useScrollReveal();
-    const [ctaRef, isCtaVisible] = useScrollReveal();
-
-    return (
-      <section id="about" className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <div 
-            className={`text-center mb-16 md:mb-20 ${isAboutHeaderVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
-            ref={aboutHeaderRef}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm font-medium text-yellow-400">Our Story</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
-              Building The Future of
-              <span className="block bg-gradient-to-r from-yellow-400 via-orange-500 to-amber-600 bg-clip-text text-transparent mt-2">
-                Web Development
-              </span>
-            </h2>
-            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              We're on a mission to democratize web development and empower creators worldwide
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center mb-20 md:mb-32">
-            <div 
-              className={`${isAboutContentVisible ? 'animate-fadeInRight' : 'opacity-0'}`}
-              ref={aboutContentRef}
-            >
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 hover:translate-x-2 transition-transform duration-500">
-                Empowering creators since 2024
-              </h3>
-              <p className="text-gray-400 text-base md:text-lg mb-6 leading-relaxed hover:text-gray-300 transition-colors duration-300">
-                WOOF was born from a simple observation: creating websites shouldn't require years of coding experience. 
-                Our team of AI researchers and web developers have built a platform that understands design principles, 
-                user experience, and modern web standards.
-              </p>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed hover:text-gray-300 transition-colors duration-300">
-                We believe that everyone has great ideas, and technology should empower, not limit creativity. 
-                That's why we've made it our mission to make web development accessible to everyone.
-              </p>
-            </div>
-            
-            <div 
-              className={`grid grid-cols-2 gap-4 md:gap-6 ${areStatsVisible ? 'animate-fadeInLeft' : 'opacity-0'}`}
-              ref={statsRef}
-            >
-              {[
-                { number: "10K+", label: "Websites Created", gradient: "from-yellow-500 to-orange-500" },
-                { number: "99.9%", label: "Uptime SLA", gradient: "from-orange-500 to-amber-500" },
-                { number: "10.8s", label: "Avg Generation", gradient: "from-amber-500 to-yellow-600" },
-                { number: "150+", label: "Countries", gradient: "from-yellow-600 to-orange-600" }
-              ].map((stat, idx) => (
-                <div key={idx} className="group relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/0 rounded-2xl transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
-                  <div className="relative p-6 md:p-8 text-center">
-                    <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-2 group-hover:transform group-hover:translate-y-[-5px] transition-transform duration-300`}>
-                      {stat.number}
-                    </div>
-                    <div className="text-gray-400 text-sm md:text-base group-hover:text-gray-300 transition-colors duration-300">{stat.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* CTA Section */}
-          <div 
-            className={`relative ${isCtaVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
-            ref={ctaRef}
-            style={{ animationDelay: '0.2s' }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-orange-500/20 to-amber-600/20 blur-3xl"></div>
-            <div className="relative bg-gradient-to-r from-gray-900/90 to-gray-900/70 backdrop-blur-xl rounded-3xl p-10 md:p-16 text-center border border-white/10 hover:border-white/20 transition-all duration-500">
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Build Something Amazing?
-              </h3>
-              <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of creators who are building the future of the web
-              </p>
-              <button
-                className="px-8 py-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-amber-600 rounded-full font-semibold text-lg text-white shadow-2xl shadow-yellow-500/25 hover:shadow-yellow-500/40 transition-all duration-300 transform hover:scale-105"
-                onClick={() => setCurrentPage('builder')}
-              >
-                Start Building for Free
-                <ChevronRight className="inline-block w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
   // Main render
   return (
     <div className="app-container bg-black text-white">
@@ -541,7 +467,6 @@ const ModernLandingPage = () => {
             <HomeSection />
             <FeaturesSection />
             <DemoSection />
-            <AboutSection />
           </>
         )}
       </main>
