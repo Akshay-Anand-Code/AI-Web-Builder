@@ -354,6 +354,24 @@ const ModernLandingPage = () => {
     const [demoHeaderRef, isDemoHeaderVisible] = useScrollReveal();
     const [videoRef, isVideoVisible] = useScrollReveal();
     const [stepsRef, areStepsVisible] = useScrollReveal();
+    const videoElementRef = useRef(null);
+
+    // Control video playback based on visibility
+    useEffect(() => {
+      const videoElement = videoElementRef.current;
+      if (!videoElement) return;
+
+      if (isVideoVisible) {
+        // Play when visible
+        videoElement.play().catch(err => {
+          console.log('Auto-play prevented:', err);
+          // Some browsers prevent autoplay without user interaction
+        });
+      } else {
+        // Pause when not visible
+        videoElement.pause();
+      }
+    }, [isVideoVisible]);
 
     return (
       <section id="demo" className="py-24 md:py-32 relative overflow-hidden">
@@ -378,7 +396,7 @@ const ModernLandingPage = () => {
             </p>
           </div>
           
-          {/* Video Player Mock */}
+          {/* Video Player */}
           <div 
             className={`relative max-w-5xl mx-auto mb-16 md:mb-20 ${isVideoVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
             ref={videoRef}
@@ -386,15 +404,19 @@ const ModernLandingPage = () => {
           >
             <div className="relative bg-gradient-to-br from-yellow-900/20 to-orange-900/20 rounded-3xl p-1 hover:from-yellow-900/30 hover:to-orange-900/30 transition-all duration-500">
               <div className="bg-black rounded-3xl overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center relative group cursor-pointer">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  <div className="relative transform transition-transform duration-500 group-hover:scale-110">
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
-                      <Play className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" />
-                    </div>
-                    <div className="absolute inset-0 rounded-full bg-white/20 animate-ping"></div>
-                  </div>
-                </div>
+                <video
+                  ref={videoElementRef}
+                  src="/Woof Promo E02_1 (1).mp4"
+                  className="aspect-video w-full h-auto rounded-3xl bg-black"
+                  poster="/video-poster.png"
+                  style={{ display: 'block', maxHeight: '600px', margin: '0 auto' }}
+                  playsInline
+                  controls
+                  preload="auto"
+                  loop
+                >
+                  Sorry, your browser does not support embedded videos.
+                </video>
               </div>
             </div>
           </div>
