@@ -88,7 +88,7 @@ const ModernLandingPage = () => {
                 {/* Insert Twitter icon after Demo */}
                 {link.key === 'demo' && (
                   <a
-                    href="https://x.com/bonk_fun" // Replace with your actual X handle
+                    href="https://x.com/woofonbonk" // Replace with your actual X handle
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-2 flex items-center px-3 py-2 rounded-full text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
@@ -129,7 +129,7 @@ const ModernLandingPage = () => {
                 {/* Insert Twitter icon after Demo */}
                 {link.key === 'demo' && (
                   <a
-                    href="https://twitter.com/YOUR_HANDLE" // Replace with your actual X handle
+                    href="https://x.com/woofonbonk" // Replace with your actual X handle
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-3 rounded-xl text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
@@ -228,17 +228,7 @@ const ModernLandingPage = () => {
                 </a>
               </div>
               
-              {/* Trust Indicators */}
-              <div className="hidden md:block">
-                <p className="text-sm uppercase tracking-wider text-gray-500 mb-3">Trusted by innovative teams</p>
-                <div className="flex flex-wrap items-center gap-6">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="h-8 w-20 bg-white/5 rounded-md flex items-center justify-center hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
-                      <div className="h-3 w-12 bg-white/10 rounded"></div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+
             </div>
             
             {/* Right Column: Floating UI Preview */}
