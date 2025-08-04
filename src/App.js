@@ -88,7 +88,7 @@ const ModernLandingPage = () => {
                 {/* Insert Twitter icon after Demo */}
                 {link.key === 'demo' && (
                   <a
-                    href="https://x.com/woofonbonk" // Replace with your actual X handle
+                    href="https://x.com/Vibecodewoof" // Replace with your actual X handle
                     target="_blank"
                     rel="noopener noreferrer"
                     className="ml-2 flex items-center px-3 py-2 rounded-full text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
@@ -129,7 +129,7 @@ const ModernLandingPage = () => {
                 {/* Insert Twitter icon after Demo */}
                 {link.key === 'demo' && (
                   <a
-                    href="https://x.com/woofonbonk" // Replace with your actual X handle
+                    href="https://x.com/Vibecodewoof" // Replace with your actual X handle
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-3 rounded-xl text-gray-300 hover:text-yellow-400 hover:bg-white/10 transition-all duration-300"
