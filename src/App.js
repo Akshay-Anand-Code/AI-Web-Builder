@@ -67,26 +67,26 @@ const ModernLandingPage = () => {
 
   const Navigation = () => (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-black/80 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
+      scrolled ? 'bg-saas-darker/90 backdrop-blur-xl border-b border-saas-light/10' : 'bg-transparent'
     }`}>
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2 group cursor-pointer">
-            <div className="w-10 h-10 flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/25">
+          <div className="flex items-center space-x-2 group cursor-pointer">
+            <div className="w-10 h-10 flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-blue/25">
               <img src="/Diytech.png" alt="CLIO Logo" className="w-full h-full" />
             </div>
-            <span className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">CLIO</span>
+            <span className="text-xl font-display font-bold text-white group-hover:text-saas-blue transition-all duration-300">CLIO</span>
           </div>
           <div className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => (
-              <a
+                <a
                 key={link.key}
-                href={link.href}
-                className="px-5 py-2.5 rounded-full transition-all duration-300 text-gray-300 hover:text-white hover:bg-white/10 font-medium hover:translate-y-[-2px]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+                  href={link.href}
+                  className="px-5 py-2.5 rounded-full transition-all duration-300 text-gray-300 hover:text-white hover:bg-white/10 font-medium hover:translate-y-[-2px]"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
             ))}
             <button 
               className="ml-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full font-semibold text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105" 
@@ -107,16 +107,16 @@ const ModernLandingPage = () => {
         <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
           <div className="px-6 py-4 space-y-2">
             {navLinks.map((link) => (
-              <a
+                <a
                 key={link.key}
-                href={link.href}
-                className="block w-full text-left px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+                  href={link.href}
+                  className="block w-full text-left px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
             ))}
-            <button className="w-full mt-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300" onClick={() => { setCurrentPage('builder'); setIsMenuOpen(false); }}>
+            <button className="w-full mt-4 bg-saas-blue text-white px-6 py-3 rounded-full font-semibold hover:shadow-blue shadow-blue-blue/25 transition-all duration-300 transform hover:scale-105" onClick={() => { setCurrentPage('builder'); setIsMenuOpen(false); }}>
               Start Building
             </button>
           </div>
@@ -144,96 +144,69 @@ const ModernLandingPage = () => {
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-          {/* Static gradient orbs - removed animations */}
-          <div className="absolute top-0 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-          <div className="absolute top-0 -right-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-          <div className="absolute -bottom-40 left-20 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          <div className="absolute inset-0 bg-saas-black"></div>
+          {/* Subtle blue glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-saas-blue rounded-full opacity-[0.03] blur-3xl"></div>
           {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg width=%2260%22 height=%2260%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cdefs%3E%3Cpattern id=%22grid%22 width=%2260%22 height=%2260%22 patternUnits=%22userSpaceOnUse%22%3E%3Cpath d=%22M 60 0 L 0 0 0 60%22 fill=%22none%22 stroke=%22rgba(255,255,255,0.03)%22 stroke-width=%221%22/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22url(%23grid)%22/%3E%3C/svg%3E')] opacity-30"></div>
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg width=%2260%22 height=%2260%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cdefs%3E%3Cpattern id=%22grid%22 width=%2260%22 height=%2260%22 patternUnits=%22userSpaceOnUse%22%3E%3Cpath d=%22M 60 0 L 0 0 0 60%22 fill=%22none%22 stroke=%22rgba(255,255,255,0.03)%22 stroke-width=%221%22/%3E%3C/pattern%3E%3C/defs%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22url(%23grid)%22/%3E%3C/svg%3E')] opacity-20"></div>
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 md:py-28">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12">
-            {/* Left Column: Main Content */}
-            <div 
-              className={`lg:w-1/2 text-left lg:pr-8 transition-all duration-1000 ease-out ${
-                animationComplete ? "opacity-100" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border border-purple-500/20 rounded-full mb-6 backdrop-blur-sm hover:from-purple-500/20 hover:to-cyan-500/20 transition-all duration-500">
-                <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-sm font-medium bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  AI-Powered Website Generation
-                </span>
-              </div>
-              
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-                <span className="text-white block transform hover:translate-x-2 transition-transform duration-700">Build Websites</span>
-                <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mt-2">
-                  Like Magic
-                </span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-xl leading-relaxed">
-                Transform your ideas into stunning, production-ready websites in seconds.
-                <span className="text-white font-medium"> No coding required.</span>
-              </p>
-              
-              <div className="flex flex-wrap gap-4 mb-12">
-                <button
-                  className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 rounded-full font-semibold text-lg text-white shadow-2xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 overflow-hidden"
-                  onClick={() => setCurrentPage('builder')}
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    Start Building Now
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-                
-                <a 
-                  href="#demo" 
-                  className="group px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full font-semibold text-lg text-white hover:bg-white/10 transition-all duration-300 flex items-center gap-3 hover:-translate-y-1"
-                >
-                  <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white/20 transition-all">
-                    <Play className="w-4 h-4 ml-0.5" />
-                  </div>
-                  Watch Demo
-                </a>
-              </div>
-              
-              {/* Trust Indicators */}
-              <div className="hidden md:block">
-                <p className="text-sm uppercase tracking-wider text-gray-500 mb-3">Trusted by innovative teams</p>
-                <div className="flex flex-wrap items-center gap-6">
-                  {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="h-8 w-20 bg-white/5 rounded-md flex items-center justify-center hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
-                      <div className="h-3 w-12 bg-white/10 rounded"></div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32 text-center">
+          <div 
+            className={`transition-all duration-1000 ease-out ${
+              animationComplete ? "opacity-100" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-saas-blue/5 border border-saas-blue/10 rounded-full mb-6">
+              <Sparkles className="w-4 h-4 text-saas-blue" />
+              <span className="text-sm font-medium text-saas-blue">
+                AI-Powered Website Generation
+              </span>
             </div>
             
-            {/* Right Column: Floating UI Preview */}
-            <div 
-              className={`lg:w-1/2 mt-12 lg:mt-0 transition-all duration-1000 ease-out delay-300 ${
-                animationComplete ? "opacity-100" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <div className="relative mx-auto max-w-xl">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 to-purple-600/20 rounded-2xl blur-xl opacity-70"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 pointer-events-none"></div>
-                <div className="relative bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-white/10 p-2 shadow-2xl transform perspective-1000 hover:rotate-y-2 transition-all duration-500">
-                  <div className="bg-gray-950 rounded-xl p-8 md:p-12 min-h-[400px] flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-2xl mx-auto mb-6"></div>
-                      <div className="h-4 bg-gray-800 rounded-full w-48 mx-auto mb-4"></div>
-                      <div className="h-3 bg-gray-800 rounded-full w-32 mx-auto"></div>
-                    </div>
-                  </div>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black mb-8 tracking-tight leading-none mx-auto">
+              <span className="text-white block">Build Websites</span>
+              <span className="block text-saas-blue">
+                Like Magic
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Transform your ideas into stunning, production-ready websites in seconds.
+              <span className="text-white font-medium"> No coding required.</span>
+            </p>
+            
+            <div className="flex flex-wrap gap-6 justify-center mb-16">
+              <button
+                className="px-10 py-5 bg-saas-blue rounded-full font-semibold text-lg text-white shadow-blue transition-all duration-300 transform hover:bg-saas-blue-dark hover:-translate-y-1"
+                onClick={() => setCurrentPage('builder')}
+              >
+                <span className="flex items-center gap-2">
+                  Start Building Now
+                  <ArrowRight className="w-5 h-5" />
+                </span>
+              </button>
+              
+              <a 
+                href="#demo" 
+                className="px-10 py-5 bg-saas-dark border border-saas-light/5 rounded-full font-semibold text-lg text-white hover:bg-saas-light/10 transition-all duration-300 flex items-center gap-3 hover:-translate-y-1"
+              >
+                <div className="w-10 h-10 bg-saas-light/10 rounded-full flex items-center justify-center">
+                  <Play className="w-4 h-4 ml-0.5" />
                 </div>
+                Watch Demo
+              </a>
+            </div>
+            
+            {/* Trust Indicators */}
+            <div className="hidden md:block">
+              <p className="text-sm uppercase tracking-wider text-gray-500 mb-3">Trusted by innovative teams</p>
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                {[1, 2, 3, 4, 5].map(i => (
+                  <div key={i} className="h-8 w-24 bg-white/5 rounded-md flex items-center justify-center hover:bg-white/10 transition-all duration-500 transform hover:scale-105">
+                    <div className="h-3 w-16 bg-white/10 rounded"></div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -249,19 +222,19 @@ const ModernLandingPage = () => {
 
     return (
       <section id="features" className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-saas-black via-saas-dark/50 to-saas-black"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             className={`text-center mb-16 md:mb-20 ${areFeaturesVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
             ref={featuresRef}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
-              <Zap className="w-4 h-4 text-cyan-400" />
-              <span className="text-sm font-medium text-cyan-400">Powerful Features</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-saas-blue/10 border border-saas-blue/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
+              <Zap className="w-4 h-4 text-saas-blue" />
+              <span className="text-sm font-medium text-saas-blue">Powerful Features</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-6">
               Everything You Need to
-              <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mt-2">
+              <span className="block text-saas-blue mt-2">
                 Build Faster
               </span>
             </h2>
@@ -279,30 +252,30 @@ const ModernLandingPage = () => {
                 icon: Zap, 
                 title: "Lightning Fast", 
                 desc: "Generate complete websites in under 10 seconds",
-                gradient: "from-yellow-500 to-orange-600",
-                shadow: "shadow-orange-500/20",
+                gradient: "bg-saas-blue",
+                shadow: "shadow-blue-blue/20",
                 delay: 0
               },
               { 
                 icon: Layers, 
                 title: "Modern Stack", 
                 desc: "Clean HTML5, CSS3, and JavaScript with best practices",
-                gradient: "from-cyan-500 to-blue-600",
-                shadow: "shadow-blue-500/20",
+                gradient: "bg-saas-blue",
+                shadow: "shadow-blue-blue/20",
                 delay: 0.1
               },
               { 
                 icon: Shield, 
                 title: "Production Ready", 
                 desc: "SEO optimized, responsive, and performance focused",
-                gradient: "from-purple-500 to-pink-600",
-                shadow: "shadow-purple-500/20",
+                gradient: "bg-saas-blue",
+                shadow: "shadow-blue-blue/20",
                 delay: 0.2
               }
             ].map((feature, idx) => (
               <div 
                 key={idx} 
-                className="group relative p-8 bg-gradient-to-b from-gray-900/50 to-gray-900/20 backdrop-blur-sm rounded-2xl border border-white/5 hover:border-white/20 transition-all duration-500 hover:transform hover:scale-105 hover:-translate-y-2"
+                className="group relative p-8 bg-glass-gradient backdrop-blur-sm rounded-2xl border border-saas-light/10 hover:border-saas-blue/30 transition-all duration-500 hover:transform hover:scale-105 hover:-translate-y-2 hover:shadow-blue"
                 style={{ 
                   transform: 'translateY(20px)',
                   opacity: 0,
@@ -311,7 +284,7 @@ const ModernLandingPage = () => {
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className={`relative w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center mb-8 shadow-lg ${feature.shadow} group-hover:shadow-xl group-hover:scale-110 transition-all`}>
+                <div className={`relative w-16 h-16 ${feature.gradient} rounded-2xl flex items-center justify-center mb-8 shadow-lg ${feature.shadow} group-hover:shadow-blue group-hover:scale-110 transition-all`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="relative text-2xl font-bold text-white mb-4 group-hover:translate-x-1 transition-transform duration-300">{feature.title}</h3>
@@ -332,19 +305,19 @@ const ModernLandingPage = () => {
 
     return (
       <section id="demo" className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-saas-black via-saas-accent/5 to-saas-black"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             className={`text-center mb-16 md:mb-20 ${isDemoHeaderVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
             ref={demoHeaderRef}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
-              <Play className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-400">Live Demo</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-saas-blue/10 border border-saas-blue/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
+              <Play className="w-4 h-4 text-saas-blue" />
+              <span className="text-sm font-medium text-saas-blue">Live Demo</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-6">
               See The Magic
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mt-2">
+              <span className="block text-saas-blue mt-2">
                 In Action
               </span>
             </h2>
@@ -359,7 +332,7 @@ const ModernLandingPage = () => {
             ref={videoRef}
             style={{ animationDelay: '0.2s' }}
           >
-            <div className="relative bg-gradient-to-br from-purple-900/20 to-pink-900/20 rounded-3xl p-1 hover:from-purple-900/30 hover:to-pink-900/30 transition-all duration-500">
+            <div className="relative bg-saas-blue/10 rounded-3xl p-1 hover:bg-saas-blue/15 transition-all duration-500">
               <div className="bg-black rounded-3xl overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-gray-900 to-gray-950 flex items-center justify-center relative group cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -384,21 +357,21 @@ const ModernLandingPage = () => {
                 step: "01", 
                 title: "Describe Your Vision", 
                 desc: "Use natural language to describe your ideal website",
-                color: "from-cyan-500 to-blue-500",
+                color: "text-saas-blue",
                 delay: 0
               },
               { 
                 step: "02", 
                 title: "AI Works Its Magic", 
                 desc: "Watch as your website is generated in real-time",
-                color: "from-blue-500 to-purple-500",
+                color: "text-saas-blue",
                 delay: 0.2
               },
               { 
                 step: "03", 
                 title: "Deploy Instantly", 
                 desc: "Export your code or deploy directly to the web",
-                color: "from-purple-500 to-pink-500",
+                color: "text-saas-blue",
                 delay: 0.4
               }
             ].map((item, idx) => (
@@ -414,7 +387,7 @@ const ModernLandingPage = () => {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/0 rounded-2xl transform scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500"></div>
                 <div className="relative p-6 md:p-8 hover:transform hover:translate-y-[-5px] transition-all duration-300">
-                  <div className={`text-5xl md:text-6xl font-black bg-gradient-to-r ${item.color} bg-clip-text text-transparent mb-6 group-hover:transform group-hover:translate-x-2 transition-transform duration-300`}>
+                  <div className="text-5xl md:text-6xl font-black text-saas-blue mb-6 group-hover:transform group-hover:translate-x-2 transition-transform duration-300">
                   {item.step}
                   </div>
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:transform group-hover:translate-x-1 transition-transform duration-300">{item.title}</h3>
@@ -435,19 +408,19 @@ const ModernLandingPage = () => {
 
     return (
       <section id="pricing" className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-saas-black via-saas-dark/50 to-saas-black"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             className={`text-center mb-16 md:mb-20 ${isPricingHeaderVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
             ref={pricingHeaderRef}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
-              <Star className="w-4 h-4 text-green-400" />
-              <span className="text-sm font-medium text-green-400">Simple Pricing</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-saas-blue/10 border border-saas-blue/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
+              <Star className="w-4 h-4 text-saas-blue" />
+              <span className="text-sm font-medium text-saas-blue">Simple Pricing</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-6">
               Choose Your
-              <span className="block bg-gradient-to-r from-green-400 via-emerald-500 to-teal-600 bg-clip-text text-transparent mt-2">
+              <span className="block text-saas-blue mt-2">
                 Perfect Plan
               </span>
             </h2>
@@ -469,8 +442,8 @@ const ModernLandingPage = () => {
                 features: ["5 websites per month", "Basic templates", "Community support", "Export to HTML/CSS"],
                 cta: "Start Free",
                 popular: false,
-                gradient: "from-gray-600 to-gray-700",
-                borderGradient: "from-gray-600 to-gray-700",
+                gradient: "bg-saas-light",
+                borderGradient: "border-saas-light",
                 delay: 0
               },
               {
@@ -481,8 +454,8 @@ const ModernLandingPage = () => {
                 features: ["Unlimited websites", "Premium templates", "Priority support", "Advanced customization", "Commercial license", "API access"],
                 cta: "Start Free Trial",
                 popular: true,
-                gradient: "from-cyan-500 via-blue-500 to-purple-600",
-                borderGradient: "from-cyan-400 via-blue-400 to-purple-500",
+                gradient: "bg-saas-blue",
+                borderGradient: "border-saas-blue",
                 delay: 0.15
               },
               {
@@ -493,8 +466,8 @@ const ModernLandingPage = () => {
                 features: ["Everything in Pro", "White-label options", "Dedicated support", "Custom integrations", "SLA guarantee", "Advanced analytics"],
                 cta: "Contact Sales",
                 popular: false,
-                gradient: "from-purple-600 to-pink-600",
-                borderGradient: "from-purple-500 to-pink-500",
+                gradient: "bg-saas-blue-dark",
+                borderGradient: "border-saas-blue-dark",
                 delay: 0.3
               }
             ].map((plan, idx) => (
@@ -535,7 +508,7 @@ const ModernLandingPage = () => {
                     <ul className="space-y-4 mb-10">
                   {plan.features.map((feature, featureIdx) => (
                         <li key={featureIdx} className="flex items-center gap-3 group-hover:transform group-hover:translate-x-1 transition-transform duration-300" style={{ transitionDelay: `${featureIdx * 50}ms` }}>
-                          <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${plan.gradient} flex items-center justify-center flex-shrink-0`}>
+                          <div className={`w-5 h-5 rounded-full ${plan.gradient} flex items-center justify-center flex-shrink-0`}>
                             <Check className="w-3 h-3 text-white" />
                           </div>
                           <span className="text-gray-300 text-base">{feature}</span>
@@ -544,7 +517,7 @@ const ModernLandingPage = () => {
                 </ul>
                     <button className={`w-full py-4 rounded-xl font-semibold text-base transition-all duration-300 ${
                   plan.popular
-                        ? `bg-gradient-to-r ${plan.gradient} text-white hover:shadow-lg hover:shadow-blue-500/25 transform hover:scale-105`
+                        ? `${plan.gradient} text-white hover:shadow-blue transform hover:scale-105`
                         : 'bg-white/10 text-white hover:bg-white/20'
                 }`}>
                       {plan.cta}
@@ -568,19 +541,19 @@ const ModernLandingPage = () => {
 
     return (
       <section id="about" className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-900/10 to-black"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-saas-black via-saas-accent/5 to-saas-black"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div 
             className={`text-center mb-16 md:mb-20 ${isAboutHeaderVisible ? 'animate-fadeInUp' : 'opacity-0'}`}
             ref={aboutHeaderRef}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm font-medium text-purple-400">Our Story</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-saas-blue/10 border border-saas-blue/20 rounded-full mb-8 backdrop-blur-sm transform transition-all duration-500 hover:scale-105">
+              <Sparkles className="w-4 h-4 text-saas-blue" />
+              <span className="text-sm font-medium text-saas-blue">Our Story</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white mb-6">
               Building The Future of
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent mt-2">
+              <span className="block text-saas-blue mt-2">
                 Web Development
               </span>
             </h2>
@@ -613,15 +586,15 @@ const ModernLandingPage = () => {
               ref={statsRef}
             >
               {[
-                { number: "10K+", label: "Websites Created", gradient: "from-cyan-500 to-blue-500" },
-                { number: "99.9%", label: "Uptime SLA", gradient: "from-blue-500 to-purple-500" },
-                { number: "10.8s", label: "Avg Generation", gradient: "from-purple-500 to-pink-500" },
-                { number: "150+", label: "Countries", gradient: "from-pink-500 to-red-500" }
+                { number: "10K+", label: "Websites Created", gradient: "text-saas-blue" },
+                { number: "99.9%", label: "Uptime SLA", gradient: "text-saas-blue" },
+                { number: "10.8s", label: "Avg Generation", gradient: "text-saas-blue" },
+                { number: "150+", label: "Countries", gradient: "text-saas-blue" }
               ].map((stat, idx) => (
                 <div key={idx} className="group relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/0 rounded-2xl transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
                   <div className="relative p-6 md:p-8 text-center">
-                    <div className={`text-3xl md:text-4xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-2 group-hover:transform group-hover:translate-y-[-5px] transition-transform duration-300`}>
+                    <div className="text-3xl md:text-4xl font-black text-saas-blue mb-2 group-hover:transform group-hover:translate-y-[-5px] transition-transform duration-300">
                       {stat.number}
                     </div>
                     <div className="text-gray-400 text-sm md:text-base group-hover:text-gray-300 transition-colors duration-300">{stat.label}</div>
@@ -661,7 +634,7 @@ const ModernLandingPage = () => {
 
   // Main render
   return (
-    <div className="app-container bg-black text-white">
+    <div className="app-container bg-saas-black text-white font-body">
       <Navigation />
       <main className="main-content">
         {currentPage === 'builder' ? (
